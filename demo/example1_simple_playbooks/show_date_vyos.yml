@@ -1,0 +1,17 @@
+---
+## To call this playbook:
+##    ansible-playbook -i hosts show_date_vyos.yml
+- name: Show current date and time of managed nodes
+  hosts: vyosrouters
+  gather_facts: no
+
+  tasks:
+    - name: Get current dated and time of managed node
+      vyos_command:
+        commands:
+          - 'show date'
+      register: task_result
+
+    - name: Display current date and time on managed node
+      debug:
+        msg: "On {{inventory_hostname}} date&time is {{task_result.stdout}}"
