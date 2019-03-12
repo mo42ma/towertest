@@ -1,0 +1,9 @@
+---
+- name: play1
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: ios_facts einsammeln
+      ios_facts:
+        gather_subset: all
+ 
